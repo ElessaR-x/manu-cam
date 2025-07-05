@@ -1,0 +1,21 @@
+name: camera-api
+service:
+  name: camera-api
+  type: web
+  ports:
+    - port: 8000
+      protocol: http
+  routes:
+    - path: /
+      protocol: http
+  env:
+    - name: CAMERA_IP
+      value: "192.168.1.102"
+    - name: CAMERA_USERNAME
+      value: "manuco"
+    - name: CAMERA_PASSWORD
+      value: "manu0625"
+  build:
+    builder: python
+    buildCommand: pip install -r api/requirements.txt
+    runCommand: cd api && uvicorn main:app --host 0.0.0.0 --port 8000 
